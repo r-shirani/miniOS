@@ -32,7 +32,7 @@ def Run_Command(command):
             List_files(arg)
             return True
         elif cmd=="delete":#delete a file in the dir
-            Delete_file()
+            Delete_file(arg)
             return True
         elif cmd=="rename":#rename a file in the dir
             Rename_file()
@@ -72,8 +72,12 @@ def List_files(arg):
             print(f"{opening_time} | {file} | {size} bytes ")
     except FileNotFoundError:
         print("\tPath not found.\r\n")
-def Delete_file():
-    input=1
+def Delete_file(arg):
+    try:
+        os.remove(arg)#remove the file
+        print("\tFile deleted successfully.\n")
+    except FileNotFoundError:
+        print("\tFile not found.\r\n")
 def Rename_file():
     input=1
 def Make_dir():
