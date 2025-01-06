@@ -29,7 +29,7 @@ def Run_Command(command):
             Change_dir(arg)
             return True
         elif cmd=="list":#list of files in the dir
-            List_files()
+            List_files(arg)
             return True
         elif cmd=="delete":#delete a file in the dir
             Delete_file()
@@ -60,8 +60,18 @@ def Change_dir():
         print("\tDirectory changed.\n")
     except FileNotFoundError:
         print("\tDirectory not found.\n")
-def List_files():
-    input=1
+def List_files(arg):
+    #path can be the current path or a certain path
+    path = arg if arg else BASE_DIR
+    try:
+        files = os.listdir(path)#list of files in the path
+        for file in files:
+            file_path = os.path.join(path, file)#creat file path
+            size = os.path.getsize(file_path)#size of file
+            opening_time = time.ctime(os.path.getmtime(file_path))#creating file's time  
+            print(f"{opening_time} | {file} | {size} bytes ")
+    except FileNotFoundError:
+        print("\tPath not found.\r\n")
 def Delete_file():
     input=1
 def Rename_file():
