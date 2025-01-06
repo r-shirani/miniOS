@@ -3,8 +3,8 @@ Developing a Mini Operating System
 
 The code is a basic implementation of the "Mini OS" project written in Python. It includes the following basic commands:
 - **CDIR <DirectoryName**: Change the directory.
-- **LIST**: Displays the contents of the current directory.
-- **LIST <DirectoryName>**: Displays the contents of a certain directory.  
+- **LIST <DirectoryName>**: Displays the contents of a certain directory.
+- **LIST**: Displays the contents of the current directory.  
 - **MKD <filename>**: Creates an empty file.
 - **RD <DirectoryName>**: Remove the directory.  
 - **DELETE <filename>**: Deletes a file.  
