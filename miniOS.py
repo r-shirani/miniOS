@@ -23,31 +23,34 @@ def help_Menu():
 
 def Run_Command(command):
     try:
-        cmd, *args = command.split()
-        arg = " ".join(args)
+        arg=command.split()
+        cmd=arg[0]
         if cmd=="cdir":#change dir
-            Change_dir(arg)
+            Change_dir(arg[1])
             return True
         elif cmd=="list":#list of files in the dir
-            List_files(arg)
+            try:
+                List_files(arg[1])
+            except:
+                List_files(BASE_DIR)
             return True
         elif cmd=="delete":#delete a file in the dir
-            Delete_file(arg)
+            Delete_file(arg[1])
             return True
         elif cmd=="rename":#rename a file in the dir
-            Rename_file()
+            Rename_file(arg[1],arg[2])
             return True
         elif cmd=="mkd":#make a dir
-            Make_dir(arg)
+            Make_dir(arg[1])
             return True
         elif cmd=="rd":#remove a dir
-            Remove_dir(arg)
+            Remove_dir(arg[1])
             return True
         elif cmd=="help":#show available commands
             help_Menu()
             return True
         elif cmd=="exit":#exit the mini OS
-            print("Exiting the mini OS. Goodbye!")
+            print("\tExiting the mini OS. Goodbye!")
             return False 
     except Exception as e:
         print(f"Error: {e}")
@@ -62,7 +65,7 @@ def Change_dir():
         print("\tDirectory not found.\n")
 def List_files(arg):
     #path can be the current path or a certain path
-    path = arg if arg else BASE_DIR
+    path = arg
     try:
         files = os.listdir(path)#list of files in the path
         for file in files:
@@ -78,8 +81,12 @@ def Delete_file(arg):
         print("\tFile deleted successfully.\n")
     except FileNotFoundError:
         print("\tFile not found.\r\n")
-def Rename_file():
-    input=1
+def Rename_file(old_name,new_name):
+    if os.path.exists(old_name):
+        os.rename(old_name, new_name)
+        print(f"'{old_name}' renamed to '{new_name}'.")
+    else:
+        print(f"Error: '{old_name}' does not exist.")
 def Make_dir(arg):
     try:
         os.makedirs(arg)
@@ -95,8 +102,8 @@ def Remove_dir(arg):
 
 def main():
     print("Welcome to the Mini OS!")
+    print("Type 'HELP' for a list of commands.")
     while True:
-        print("Type 'HELP' for a list of commands.")
         command=input("RSH >")
         if not Run_Command(command):
             break
