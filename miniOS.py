@@ -23,10 +23,10 @@ def help_Menu():
 
 def Run_Command(command):
     try:
-        parts = command.strip().split()
-        cmd = parts[0].lower()
+        cmd, *args = command.split()
+        arg = " ".join(args)
         if cmd=="cdir":#change dir
-            Change_dir()
+            Change_dir(arg)
             return True
         elif cmd=="list":#list of files in the dir
             List_files()
@@ -54,7 +54,12 @@ def Run_Command(command):
         return True
 
 def Change_dir():
-    input=1
+    try:
+        os.chdir(arg)#change the current directory to the arg directory
+        BASE_DIR = os.getcwd()#update the current directory
+        print("\tDirectory changed.\n")
+    except FileNotFoundError:
+        print("\tDirectory not found.\n")
 def List_files():
     input=1
 def Delete_file():
