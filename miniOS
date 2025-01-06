@@ -1,0 +1,29 @@
+import os
+
+def help_Menu():
+    print("Available Commands:")
+    #Change the directory
+    print("\tCDIR <directory> - Change the directory to the new directory")
+    #List of files in the current directory
+    print("\tLIST - List of files in the current directory.")
+    #List of files in a specific directory
+    print("\tLIST <directory> - List of files in the directory.")
+    #Delete a file in the current directory or a specific directory
+    print("\tDELETE <filename> - Delete a file.")
+    #Rename a file or directory 
+    print("\tRENAME <oldname> <newname> - Rename a file or directory.")
+    #make a new directory
+    print("\tMKD <Directory name> - make a new derectory.")
+    #Remove a directory
+    print("\tRD <Directory name> - Remove the derectory.")
+    #Show available commands
+    print("\tHELP - Show available commands.")
+    #Exit
+    print("\tEXIT - Exit the mini OS.")
+
+def main():
+    print("Welcome to the Mini OS!")
+
+if __name__ == "__main__":
+    main()
+
