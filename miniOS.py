@@ -38,7 +38,7 @@ def Run_Command(command):
             Rename_file()
             return True
         elif cmd=="mkd":#make a dir
-            Make_dir()
+            Make_dir(arg)
             return True
         elif cmd=="rd":#remove a dir
             Remove_dir()
@@ -80,8 +80,12 @@ def Delete_file(arg):
         print("\tFile not found.\r\n")
 def Rename_file():
     input=1
-def Make_dir():
-    input=1
+def Make_dir(arg):
+    try:
+        os.makedirs(arg)
+        print(f"\t\"{arg}\" directory created.\n")
+    except Exception as e:
+        print(f"\tFailed to create directory: {e}\n")
 def Remove_dir():
     input=1
 def Change_dir():
