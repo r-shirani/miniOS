@@ -41,7 +41,7 @@ def Run_Command(command):
             Make_dir(arg)
             return True
         elif cmd=="rd":#remove a dir
-            Remove_dir()
+            Remove_dir(arg)
             return True
         elif cmd=="help":#show available commands
             help_Menu()
@@ -86,8 +86,12 @@ def Make_dir(arg):
         print(f"\t\"{arg}\" directory created.\n")
     except Exception as e:
         print(f"\tFailed to create directory: {e}\n")
-def Remove_dir():
-    input=1
+def Remove_dir(arg):
+    try:
+        os.rmdir(arg)
+        print(f"\tDirectory \"{arg}\" removed successfully.\n")
+    except Exception as e:
+        print(f"\tFailed to remove directory: {e}\n")
 def Change_dir():
     input=1
 
