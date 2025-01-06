@@ -92,11 +92,14 @@ def Remove_dir(arg):
         print(f"\tDirectory \"{arg}\" removed successfully.\n")
     except Exception as e:
         print(f"\tFailed to remove directory: {e}\n")
-def Change_dir():
-    input=1
 
 def main():
     print("Welcome to the Mini OS!")
+    while True:
+        print("Type 'HELP' for a list of commands.")
+        command=input("RSH >")
+        if not Run_Command(command):
+            break
 
 if __name__ == "__main__":
     main()
